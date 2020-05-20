@@ -1,0 +1,11 @@
+[package]
+name = "socketcan-sys"
+version = "0.1.0"
+authors = ["Cody Schafer <dev@codyps.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+description = "Low-level bindings to Linux's SocketCAN api for CANBus"
+keywords = ["can", "canbus", "linux", "socketcan"]
+categories = ["external-ffi-bindings", "network-programming"]
+
+[dependencies]

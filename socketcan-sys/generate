@@ -1,0 +1,4 @@
+#! /bin/bash
+set -euf -o pipefail
+cd "$(dirname "$0")"
+bindgen bindings.h >src/bindings.rs
