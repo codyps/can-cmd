@@ -1,4 +1,25 @@
 #! /bin/bash
 set -euf -o pipefail
 cd "$(dirname "$0")"
-bindgen bindings.h >src/bindings.rs
+bindgen \
+	--whitelist-var 'CAN_.*' \
+	--whitelist-var 'CANFD_.*' \
+	--whitelist-var 'SOL_CAN_.*' \
+	--whitelist-var '.*TIMER' \
+	--whitelist-var 'TX_.*' \
+	--whitelist-var 'RX_.*' \
+	--whitelist-var 'CGW.*' \
+	--whitelist-var '.*IFLA_CAN_.*' \
+	--whitelist-var '.*J1939.*' \
+	--whitelist-var '.*VXCAN_.*' \
+	--whitelist-type 'pgn_t' \
+	--whitelist-type 'priority_t' \
+	--whitelist-type 'rtcanmsg' \
+	--whitelist-type 'j1939_.*' \
+	--whitelist-type 'cgw.*' \
+	--whitelist-type 'bcm.*' \
+	--whitelist-type 'can.*' \
+	--whitelist-type '.*_can' \
+	--blacklist-type '__[su][0-9]+' \
+	bindings.h \
+	>src/bindings.rs
