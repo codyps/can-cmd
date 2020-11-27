@@ -7,5 +7,7 @@ license = "MIT OR Apache-2.0"
 description = "Low-level bindings to Linux's SocketCAN api for CANBus"
 keywords = ["can", "canbus", "linux", "socketcan"]
 categories = ["external-ffi-bindings", "network-programming"]
+repository = "https://github.com/jmesmon/can-cmd"
+documentation = "https://docs.rs/can-cmd"
 
 [dependencies]
