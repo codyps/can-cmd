@@ -3,9 +3,12 @@ pub const SIOCGIFINDEX: c_ulong = 0x8933;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     eprintln!("socket");
-    let socket = unsafe { libc::socket(libc::AF_CAN,
-        libc::SOCK_RAW | libc::SOCK_CLOEXEC,
-        socketcan_sys::CAN_RAW as libc::c_int)
+    let socket = unsafe {
+        libc::socket(
+            libc::AF_CAN,
+            libc::SOCK_RAW | libc::SOCK_CLOEXEC,
+            socketcan_sys::CAN_RAW as libc::c_int,
+        )
     };
     if socket < 0 {
         return Err(std::io::Error::last_os_error())?;
@@ -29,12 +32,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     eprintln!("bind");
     unsafe {
-        let r = libc::bind(socket, &sa as *const _ as *mut _, std::mem::size_of_val(&sa) as u32);
+        let r = libc::bind(
+            socket,
+            &sa as *const _ as *mut _,
+            std::mem::size_of_val(&sa) as u32,
+        );
         if r < 0 {
             return Err(std::io::Error::last_os_error())?;
         }
     }
-
 
     Ok(())
 }
